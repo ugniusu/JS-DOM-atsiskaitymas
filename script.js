@@ -192,6 +192,7 @@ button.addEventListener("click", (e) => {
   };
 
   // CREATING ELEMENTS AND VALUES
+
   const row = document.createElement("tr");
   const taskCell = document.createElement("td");
   const priorCell = document.createElement("td");
@@ -215,7 +216,6 @@ button.addEventListener("click", (e) => {
 
   row.style.display = "flex";
   row.style.justifyContent = "space-between";
-  row.style.marginBottom = "12px";
   taskCell.style.textTransform = "uppercase";
   priorCell.style.textTransform = "uppercase";
   console.log(allValue);
@@ -246,6 +246,12 @@ button.addEventListener("click", (e) => {
         parentRow.style.backgroundColor = "";
         parentRow.style.textDecoration = "none";
       }
+    });
+    removeBtn.addEventListener("click", () => {
+      const dataFromLs = JSON.parse(localStorage.getItem("tasks"));
+      const updatedData = dataFromLs.filter((el) => el.task !== taskValue);
+      localStorage.setItem("tasks", JSON.stringify(updatedData));
+      tableBody.removeChild(row);
     });
   }
 });
